@@ -61,4 +61,25 @@ describe('Park', function() {
     assert.deepEqual(park.dinosaurs, [{"species": "Tricerotops", "diet": "herbivore", "guestsAttractedPerDay": 100}]);
   });
 
+  it('should be able to get total daily guests attracted in total', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    assert.strictEqual(park.totalDailyVisitors(), 210);
+  });
+
+  it('should be able to get total guest attracted per year', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    assert.strictEqual(park.totalYearlyVisitors(), 76650);
+  });
+
+  it('should be able to calculate total annual revenue from ticket sales', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    assert.strictEqual(park.totalAnnualTicketSales(), 919800);
+  });
+
 });
