@@ -11,6 +11,7 @@ describe('Park', function() {
     park = new Park('Jurassic Park', 12);
     dino1 = new Dinosaur('t-rex', 'carnivore', 50);
     dino2 = new Dinosaur('Tricerotops', 'herbivore', 100);
+    dino3 = new Dinosaur('t-rex', 'carnivore', 60);
 
   });
 
@@ -44,8 +45,20 @@ describe('Park', function() {
     assert.strictEqual(park.findPop(), 'Tricerotops');
   });
 
-  it('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    assert.strictEqual(park.findAllBySpecies('t-rex').length, 2);
+  });
 
-  it('should be able to remove all dinosaurs of a particular species');
+  it('should be able to remove all dinosaurs of a particular species', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    assert.strictEqual(park.dinosaurs.length, 3);
+    park.removeAllBySpecies('t-rex');
+    assert.deepEqual(park.dinosaurs, [{"species": "Tricerotops", "diet": "herbivore", "guestsAttractedPerDay": 100}]);
+  });
 
 });
