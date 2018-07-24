@@ -1,6 +1,7 @@
 const assert = require('assert');
 const Park = require('../models/park.js');
 const Dinosaur = require('../models/dinosaur.js');
+const Diet = require('../models/diet.js')
 
 describe('Park', function() {
 
@@ -12,6 +13,7 @@ describe('Park', function() {
     dino1 = new Dinosaur('t-rex', 'carnivore', 50);
     dino2 = new Dinosaur('Tricerotops', 'herbivore', 100);
     dino3 = new Dinosaur('t-rex', 'carnivore', 60);
+    diet = new Diet();
 
   });
 
@@ -80,6 +82,14 @@ describe('Park', function() {
     park.add(dino2);
     park.add(dino3);
     assert.strictEqual(park.totalAnnualTicketSales(), 919800);
+  });
+
+  it('can create an object populated with diet counters for dinosaurs', function(){
+    park.add(dino1);
+    park.add(dino2);
+    park.add(dino3);
+    diet.populate(park);
+    assert.deepEqual([diet], [{carnivore: 2, herbivore: 1}]);
   });
 
 });
